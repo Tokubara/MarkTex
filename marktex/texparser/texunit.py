@@ -135,7 +135,7 @@ def under_line(s, *, escape=True):
 
 
 def in_code(s):
-    return NoEscape(r"\inlang{{\small{{{}}}}}".format(escape_latex(s)))
+    return NoEscape(r"\lstinline{{{}}}".format(escape_latex(s)))
 
 
 chchar = re.compile("([^\x00-\xff]+)")

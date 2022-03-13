@@ -11,6 +11,8 @@
 \usepackage[colorlinks,linkcolor=airforceblue,urlcolor=blue,anchorcolor=blue,citecolor=green]{hyperref}%用于超链接，另外添加该包目录会自动添加引用。
 
 \usepackage[most]{tcolorbox}%用于添加各种边框支持
+\usepackage{listings}
+\usepackage{dingbat}%有carriagereturn
 \usepackage[cache=true,outputdir=./out]{minted}%如果不保留临时文件就设置cache=false,如果输出设置了其他目录那么outputdir参数也有手动指定，否则会报错。
 \tcbuselibrary{minted}%加载tcolorbox的代码风格
 
@@ -32,7 +34,6 @@
 %\usepackage{fontspec}
 %\setmainfont{DejaVu Serif}
 
-
 \definecolor{langback}{RGB}{245,244,250}
 \definecolor{langbacktitle}{RGB}{235,233,245}
 \definecolor{langtitle}{RGB}{177,177,177}
@@ -44,19 +45,21 @@
     colframe=langbacktitle,
     colbacktitle=langbacktitle,
     coltitle=langtitle,
+    width=\textwidth,
     fonttitle=\bfseries\sffamily,
     lefttitle=1mm,toptitle=0.5mm,bottomtitle=0.5mm,
-    title = Code,
     drop shadow,
     listing engine=minted,
     minted style=colorful,
     minted language=#1,
-    minted options={fontsize=\small,breaklines,autogobble,linenos,numbersep=2mm,xleftmargin=1mm},
+    minted options={fontsize=\small,breaklines,autogobble,xleftmargin=1mm,framesep=2mm, breakautoindent,breaksymbolleft=\raisebox{0.8ex}{ \small\reflectbox{\carriagereturn}},breaksymbolindentleft=0pt, breaksymbolsepleft=0pt, breaksymbolright=\small\carriagereturn, breaksymbolindentright=0pt, breaksymbolsepright=0pt, breakbytokenanywhere},
     colback=langback,listing only,
     bottomrule=0mm,leftrule=0mm,toprule=0mm,rightrule=0mm,
     enhanced,
     % overlay={\begin{tcbclipinterior}\fill[langback] (frame.south west)rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}}
 }
+\lstset{basicstyle = \ttfamily}
+\setmonofont{Monaco} % ^pyD4wS
 
 \definecolor{boxback}{RGB}{245,246,250}
 \newtcolorbox{markquote}{
@@ -68,15 +71,15 @@
 \usepackage[UTF8,heading=true]{ctex}
 \ctexset{
 	section = {
-	number = 第\chinese{section}章,
+	% number = 第\chinese{section}章,
 	format = \zihao{3}\bfseries,
 	},
 	subsection = {
-	number = \arabic{section}.\arabic{subsection},
+	% number = \arabic{section}.\arabic{subsection},
 	format = \Large\bfseries
 	},
 	subsubsection = {
-	number = \arabic{section}.\arabic{subsection}.\arabic{subsubsection},
+	% number = \arabic{section}.\arabic{subsection}.\arabic{subsubsection},
 	format = \Large\bfseries,
 	},
     paragraph = {
@@ -87,12 +90,13 @@
 	},
 }
 
-\setlength{\parindent}{2em}%设置首行缩进
+\pagestyle{plain}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0em}%设置首行缩进
 \linespread{1.3}%设置行距
 
 \setlength{\parskip}{0.5em}%设置段间距
-\setcounter{tocdepth}{4}%设置目录级数
-\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{5}%设置目录级数
 
 
 \newtcbox{\inlang}[1][red]{on line,
@@ -107,4 +111,5 @@ boxrule=0pt,bottomrule=-1pt,toprule=-1pt,leftrule=-1pt,rightrule=-1pt}
 \definecolor{tablerowgray}{RGB}{247,247,247}
 \definecolor{tabletopgray}{RGB}{245,246,250}
 \definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+
 

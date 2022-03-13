@@ -127,7 +127,8 @@ def de_code(s: env.Code):
     code = [de_line(c) for c in s.children]
     c = tex.CodeEnvironment(s.language)
     for line in code:
-        line = line.replace("\t", "    ")  # 空格更舒适一些
+        line = re.sub("^\t", "    ", line)  # 空格更舒适一些
+        line = re.sub(r"%$", "", line)
         c.append(NoEscape(line))
     return c
 
